@@ -32,3 +32,12 @@ class MQTTClient:
     def subscribe(self, topic):
         self.client.subscribe(topic)
         self.client.loop_forever()
+
+        
+client = MQTTClient("localhost", 1883, username="user", password="password")
+client.connect()
+client.publish("test", "hello, this is a test")
+print(client.status)
+status = client.subscribe("test")
+print(client.status)
+print("Applicationen avslutades korrekt.")
